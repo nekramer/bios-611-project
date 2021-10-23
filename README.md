@@ -1,10 +1,12 @@
-# BIOS611 Project 1
+# BIOS611 Project
 
-## Cacao Beans and Chocolate Bar Ratings
+## The Great British Bake Off
 
 ### Introduction
 
 This repository contains project 1 materials for BIOS 611. 
+
+### Preliminary Figures
 
 ### Datasets
 
