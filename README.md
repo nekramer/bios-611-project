@@ -79,4 +79,10 @@ Then connect to the machine on port 8787.
 ### Making this project
 
 The Makefile included in this repository will build the major components
-of the project.
+of the project. For example, to build the first preliminary figure showing
+number of Star Baker Wins for each overall series winner, in the Terminal of
+the Docker Rstudio instance enter:
+
+```
+make figures/winner_number_starbakers.png
+```
