@@ -33,6 +33,30 @@ make source_data/episode_names.csv
 
 ### Preliminary Figures
 
+If we take a quick preliminary look at our data, we can already see some interesting
+patterns (and lack thereof) in trends for winners and first-week 
+eliminations:
+
+![](assets/winner_number_starbakers.png)
+
+There are actually 2 series (1 and 10) where the winners never won any
+Star Bakers. At most, winners have won 3 weeks of Star Bakers. Only 2 of 
+the 10 winners have won Star Baker during the notoriously difficult "Bread Week".
+
+![](assets/winner_number_technicals.png)
+
+If we look at the number of Technical Challenge wins each series winner had,
+we can see that each winner had at least one Technical Challenge where they 
+ranked first. Is a Technical Challenge win required for winning the entire
+series?
+
+![](assets/first_losers_technicals.png)
+
+Turning our attention to the Technical Challenge rankings of the bakers
+eliminated in the first week of each series, the first three series eliminations
+ranked last in the Technical Challenge before going home. This ranking then 
+fluctuates over the course of the rest of the series. Did the weight of the
+Technical Challenge change? 
 
 
 ### Usage 
