@@ -89,8 +89,10 @@ make figures/winner_number_starbakers.png
 
 ### Shiny
 
-To interactively look at the age distribution of contestants in each series,
-use the R Shiny app as follows:
+Does GBBO tend to have older or younger contestants over time? Is it possible
+that changing demographics change winning criteria? To interactively look at 
+the age distribution of contestants in each series, use the R Shiny app as 
+follows:
 
 ```
 docker run -v `pwd`:/home/rstudio -p 8080:8080 -p 8787:8787\
