@@ -102,3 +102,5 @@ Then within Rstudio, launch from the Terminal:
 ```
 PORT=8080 make shiny_app 
 ```
+
+The app is then available on your browser at port 8080.
