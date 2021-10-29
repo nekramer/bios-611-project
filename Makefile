@@ -45,3 +45,6 @@ assets/winner_number_technicals.png:
 		
 assets/first_losers_technicals.png: figures/first_losers_technicals.png
 	cp figures/first_losers_technicals.png assets/first_losers_technicals.png
+	
+shiny_app: source_data/baker_results.csv shinyapp.R
+	Rscript shinyapp.R ${PORT}

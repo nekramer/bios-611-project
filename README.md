@@ -86,3 +86,19 @@ the Docker Rstudio instance enter:
 ```
 make figures/winner_number_starbakers.png
 ```
+
+### Shiny
+
+To interactively look at the age distribution of contestants in each series,
+use the R Shiny app as follows:
+
+```
+docker run -v `pwd`:/home/rstudio -p 8080:8080 -p 8787:8787\
+    -e PASSWORD=mypassword -t project-env
+```
+
+Then within Rstudio, launch from the Terminal:
+
+```
+PORT=8080 make shiny_app 
+```
