@@ -1,0 +1,10 @@
+---
+title: "Predicting the Results of the Great British Bake Off"
+author: "Nicole Kramer"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+

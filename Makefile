@@ -1,6 +1,10 @@
 .PHONY: clean
 SHELL: /bin/bash
 
+report.pdf: report.Rmd
+	Rscripit -e "rmarkdown::render("report.Rmd", output_format = "pdf_document")"
+
+
 clean:
 	rm -f source_data/episode_names.csv
 	rm -f derived_data/*.csv
