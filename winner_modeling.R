@@ -1,7 +1,9 @@
 library(tidyverse)
 library(MLmetrics)
+library(bakeoff)
 
 source("utils.R")
+
 
 winning_data <- read_csv("derived_data/winning_data.csv") %>%
     mutate(train = runif(length(series_winner)) < 0.75)
@@ -47,7 +49,15 @@ for (ep in 1:10){
     predictions <- predictions %>% bind_rows(probs)
 }
 
+colors <- bakeoff_colors()
 series10_predictions <- ggplot(predictions, aes(x=episode, y=prob*100, group=baker, color=baker)) + 
+    scale_color_manual(values = c(colors[["cobalt"]], colors[["magenta"]],
+                                 colors[["cocoa"]], colors[["riptide"]],
+                                 colors[["baltic"]], colors[["marigold"]],
+                                 colors[["burgundy"]], colors[["yellow"]],
+                                 colors[["garden"]], colors[["violet"]], 
+                                 colors[["desertflower"]],
+                                 colors[["pear"]], colors[["almond"]])) +
     geom_line() +
     theme_minimal() +
     scale_x_continuous(breaks = seq(1:10),
