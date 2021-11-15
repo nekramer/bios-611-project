@@ -28,6 +28,14 @@ derived_data/first_eliminations.csv:\
 	tidy_lose_data.R
 		mkdir -p derived_data
 		Rscript tidy_lose_data.R
+		
+derived_data/technical_model.rda figures/roc_technical.png:\
+	source_data/challenge_results.csv\
+	utils.R\
+	technical_losing_modeling.R
+		mkdir -p derived_data
+		mkdir -p figures
+		Rscript technical_losing_modeling.R
 
 figures/winner_number_starbakers.png:\
 	winner_figures.R\
@@ -46,6 +54,7 @@ derived_data/winner_model.rda figures/roc_winner.png figures/series10_prediction
 	derived_data/series10_episode_predictors.csv\
 	winner_modeling.R\
 	utils.R
+		mkdir -p derived_data
 		mkdir -p figures
 		Rscript winner_modeling.R
 			
