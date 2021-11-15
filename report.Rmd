@@ -8,3 +8,75 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+While some bet on the outcomes of sports games, others bet on the outcomes of 
+The Great British Baking Show (GBBO). Every week, viewers watch their favorite
+home bakers battle through a themed Signature Challenge, Technical Challenge, and 
+Showstopper Challenge. While one baker is crowned "Star Baker", another is
+eliminated. Given the amount of series that the show has run, is it possible
+for us to make predictive models to determine the winners (and losers) of the
+show?
+
+
+Datasets
+========
+
+There are 4 main datasets used in this analysis: `baker_results`, 
+`challenge_results`, `episode_names`, and `episode results`. Each dataset with
+the exception of `episode_names` was obtained from Alison Hill's 
+[`bakeoff`][https://github.com/apreshill/bakeoff] data package.`episode_names` 
+were scraped from Wikipedia. These datasets contain baker-specific demographics
+and episode results, as well as overall series results for Series 1-10 of GBBO.
+
+What are the factors that determine winning a series of GBBO?
+=============================================================
+
+Performing logistic regression taking into account baker's age, the number of 
+Technical Challenge wins, the number of Technical Challenge top 3 placements, the
+number of Star Baker wins, and whether or not the baker was a "Bread Week" Star
+Baker, we create a model with 6 coefficients:
+
+```{r}
+load("derived_data/winner_model.rda")
+summary(winner_model)
+```
+
+Only the intercept and being top 3 in the Technical Challenge are significant
+in this model. Surprisingly, number of Star Baker wins is not a significant
+coefficient in this model. We can take a look at how well this model performs:
+
+![](figures/roc_winner.png)
+According to the ROC curve, it looks like this model actually does pretty 
+well!
+
+I wanted to really put this model to the test and see how the probabilities of
+winning week-to-week changed in Series 10:
+
+![](figures/series10_predictions.png)
+
+If we look at the results of each week, our model got the results a bit wrong. Alice 
+had the highest probability of winning and David had the lowest probability of winning,
+even though David actually won the series. Although Michael consistently had the
+highest probability of winning, he was eliminated in Episode 7. Rosie had a pretty
+good chance of making it the final episode, most likely because of all her technical wins,
+but was beat out by Steph and David. Perhaps even though our model seems to work
+well on our test data, it may not perform well predicting future series winners.
+The subjective aspects of judging bakes probably has the biggest influence on 
+whether a baker will win or not, which cannot easily be included in our model.
+
+Is rank in the Technical Challenge enough to predict going home?
+================================================================
+
+I further investigated to what extent the rank in the most objective challenge -
+the Technical Challenge - has on predicting losers:
+
+```{r}
+load("derived_data/technical_model.rda")
+summary(technical_model)
+```
+The technical challenge coefficient is indeed significant. 
+This model performs quite well, but not as well as our series winner predictive
+model:
+
+![](figures/roc_technical.png)
+
+

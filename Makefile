@@ -1,9 +1,31 @@
 .PHONY: clean
 SHELL: /bin/bash
 
-report.pdf: report.Rmd
-	Rscript -e "rmarkdown::render('report.Rmd', output_format = 'pdf_document')"
 
+all: source_data/episode_names.csv derived_data/winning_data.csv\
+	derived_data/series10_episode_predictors.csv\
+	derived_data/first_eliminations.csv\
+	derived_data/technical_model.rda\
+	figures/roc_technical.png\
+	figures/winner_number_starbakers.png\
+	figures/winner_number_technicals.png\
+	derived_data/winner_model.rda\
+	figures/roc_winner.png\
+	figures/series10_predictions.png\
+	figures/first_losers_technicals.png\
+	assets/winner_number_starbakers.png\
+	assets/winner_number_technicals.png\
+	assets/first_losers_technicals.png\
+	report.pdf
+	
+
+report.pdf: report.Rmd\
+	derived_data/winner_model.rda\
+	figures/roc_winner.png\
+	figures/series10_predictions.png\
+	derived_data/technical_model.rda\
+	figures/roc_technical.png
+		Rscript -e "rmarkdown::render('report.Rmd', output_format = 'pdf_document')"
 
 clean:
 	rm -f source_data/episode_names.csv
