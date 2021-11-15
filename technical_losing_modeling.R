@@ -29,7 +29,7 @@ roc <- maprbind(function(thresh){
 }, seq(from=0, to=1, length.out=1000)) %>% arrange(false_positive, true_positive)
 
 roc_technical <- ggplot(roc, aes(false_positive, true_positive)) + geom_line() +
-    xlim(0, 1) + ylim(0, 1) + labs(title = "ROC Curve of Winner Predicting Model",
+    xlim(0, 1) + ylim(0, 1) + labs(title = "ROC Curve of Technical Challenge Predicting Loser",
                                    x = "False Positiive Rate", y = "True Positive Rate") +
     theme_minimal()
 ggsave("figures/roc_technical.png", plot = roc_technical)
