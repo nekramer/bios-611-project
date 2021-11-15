@@ -31,6 +31,7 @@ clean:
 	rm -f source_data/episode_names.csv
 	rm -f derived_data/*.csv
 	rm -f figures/*.png
+	rm -f report.pdf
 
 source_data/episode_names.csv: episode_name_scraping.R
 	Rscript episode_name_scraping.R
