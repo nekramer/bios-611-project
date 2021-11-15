@@ -40,4 +40,28 @@ winning_data <- baker_results %>%
            nstar_baker, bread_star_baker,
            series_winner)
 write_csv(winning_data, "derived_data/winning_data.csv")
+
+## Series 10 episode-by-episode data for predicting probability of winning
+series10_bread <- read_csv("source_data/episode_names.csv") %>%
+    filter(series == 10, name == "Bread") %>% pull(episode)
+
+series10_bakers <- read_csv("source_data/baker_results.csv") %>%
+    filter(series == 10) %>% select(baker, age)
+
+
+series10_episode_predictors <- read_csv("source_data/challenge_results.csv") %>%
+    filter(series == 10) %>%
+    mutate(bread_star_baker = ifelse(episode == series10_bread & result == "STAR BAKER", 1, 0),
+           technical_winner = (technical == 1)*1,
+           technical_top3 = (technical >= 3)*1,
+           nstar_baker = (result == "STAR BAKER")*1) %>%
+    group_by(baker) %>%
+    mutate(bread_star_baker = cumsum(bread_star_baker),
+           technical_winner = cumsum(technical_winner),
+           technical_top3 = cumsum(technical_top3),
+           nstar_baker = cumsum(nstar_baker)) %>%
+    ungroup() %>%
+    select(-result, -signature, -technical, -showstopper) %>%
+    left_join(series10_bakers)
+write_csv(series10_episode_predictors, "derived_data/series10_episode_predictors.csv")
     
