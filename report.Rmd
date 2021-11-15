@@ -23,7 +23,7 @@ Datasets
 There are 4 main datasets used in this analysis: `baker_results`, 
 `challenge_results`, `episode_names`, and `episode results`. Each dataset with
 the exception of `episode_names` was obtained from Alison Hill's 
-[`bakeoff`][https://github.com/apreshill/bakeoff] data package.`episode_names` 
+[`bakeoff`](https://github.com/apreshill/bakeoff) data package.`episode_names` 
 were scraped from Wikipedia. These datasets contain baker-specific demographics
 and episode results, as well as overall series results for Series 1-10 of GBBO.
 
