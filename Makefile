@@ -30,6 +30,7 @@ report.pdf: report.Rmd\
 clean:
 	rm -f source_data/episode_names.csv
 	rm -f derived_data/*.csv
+	rm -f derived_data/*.rda
 	rm -f figures/*.png
 	rm -f report.pdf
 
