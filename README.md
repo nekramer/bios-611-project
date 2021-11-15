@@ -9,8 +9,7 @@ baking challenges. In such a subjective competition, what really are the
 factors that distinguish a GBBO winner from a soggy bottom?
 
 This project aims to answer some key questions I have when attempting to predict
-the outcome of each GBBO episode: Does a particular occupation seem to give
-bakers an advantage in the GBBO challenges? To what extent does performance in 
+the outcome of each GBBO episode: To what extent does performance in 
 Technical Challenges predict winning? Do "Bread Week" Star Bakers tend to 
 win more? Does low performance in the previous episode make someone more likely 
 to go home the following week?
@@ -79,12 +78,17 @@ Then connect to the machine on port 8787.
 ### Making this project
 
 The Makefile included in this repository will build the major components
-of the project. For example, to build the first preliminary figure showing
-number of Star Baker Wins for each overall series winner, in the Terminal of
-the Docker Rstudio instance enter:
+of the project. For example, to build the report associated with this 
+repository, in the Terminal of the Docker RStudio instance enter:
 
 ```
-make figures/winner_number_starbakers.png
+make report.pdf
+```
+
+To make every element in this repository, run:
+
+```
+make all
 ```
 
 ### Shiny
