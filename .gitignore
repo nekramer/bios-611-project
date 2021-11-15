@@ -1,1 +1,3 @@
 .Rhistory
+derived_data/*.csv
+figures/*.png

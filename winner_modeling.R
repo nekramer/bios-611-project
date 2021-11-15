@@ -1,6 +1,8 @@
 library(tidyverse)
 library(MLmetrics)
 
+source("utils.R")
+
 winning_data <- read_csv("derived_data/winning_data.csv") %>%
     mutate(train = runif(length(series_winner)) < 0.75)
 
@@ -17,6 +19,14 @@ pred <- predict(winner_model, newdata = test, type = "response")
 
 f1_score <- F1_Score(y_true = test$series_winner,
                      y_pred = (pred > 0.5)*1)
+
+roc <- maprbind(function(thresh){
+    ltest <- test %>% mutate(pred=1*(pred>=thresh)) %>%
+        mutate(correct = pred == series_winner)
+    tp <- ltest %>% filter(ltest$series_winner==1) %>% pull(correct) %>% rate()
+    fp <- ltest %>% filter(ltest$series_winner==0) %>% pull(correct) %>% `!`() %>% rate()
+    tibble(threshold=thresh, true_positive=tp, false_positive=fp)
+}, seq(from=0, to=1, length.out=1000)) %>% arrange(false_positive, true_positive)
 
 roc_winner <- ggplot(roc, aes(false_positive, true_positive)) + geom_line() +
     xlim(0, 1) + ylim(0, 1) + labs(title = "ROC Curve of Winner Predicting Model",
